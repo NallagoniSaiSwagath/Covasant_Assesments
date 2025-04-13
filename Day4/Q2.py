@@ -1,10 +1,13 @@
 import os
 from datetime import datetime, date
-from pkg.file import File
+
+class File:
+    def __init__(self, path):
+        self.path = path
 
 class MaxFile(File):
     def __init__(self, path):
-        super().__init__(path) 
+        super().__init__(path)
 
     def getMaxSizeFile(self, n):
         files_with_sizes = []
@@ -32,12 +35,10 @@ class MaxFile(File):
                         if mod_time > start_timestamp:
                             recent_files.append(file_path)
                 except Exception:
-                    continue  #
+                    continue
         return recent_files
 
 if __name__ == "__main__":
-    import datetime
-
     folder_path = r"C:\Users\N. Sai Swagath\Desktop\Assesments"
     fs = MaxFile(folder_path)
 
@@ -46,5 +47,5 @@ if __name__ == "__main__":
     print(result if result else "No accessible files found")
 
     print("\nFiles modified after 1st Feb 2018:")
-    result = fs.getLatestFiles(datetime.date(2018, 2, 1))
+    result = fs.getLatestFiles(date(2018, 2, 1))  
     print(result if result else "No recent files found")
