@@ -6,7 +6,9 @@ from urllib.parse import urljoin
 import re
 
 def clean_url_filename(url):
-    return re.sub(r'[^\w\-_\.]', '_', url.replace('http://', '').replace('https://', '')[:100])
+    url1 = url.replace('http://', '').replace('https://', '')[:100]
+    cleaned = re.sub(r'[^\w\-_\.]', '_', url1)
+    return cleaned
 
 def fetch_page(url, timeout=10):
     try:
